@@ -15,7 +15,7 @@ test("Test database connectivity", async () => {
 
   await client.connect();
   const res = await client.query("SELECT * FROM blogs");
-  console.table(res.rows);
+  //   console.table(res.rows);
   await client.end();
 
   expect(res.rows.length).toBeGreaterThan(0);
