@@ -17,6 +17,8 @@ test("Test database connectivity", async () => {
   const res = await client.query("SELECT $1::text as author", [
     "Japheth Kosgei!",
   ]);
+
+  console.log("Author Name:", res.rows[0].author);
   await client.end();
 
   expect(res.rows[0].author).toBe("Japheth Kosgei!");
