@@ -14,9 +14,10 @@ test("Test database connectivity", async () => {
   });
 
   await client.connect();
-  const res = await client.query("SELECT * FROM blogs");
-  //   console.table(res.rows);
+  const res = await client.query("SELECT $1::text as author", [
+    "Japheth Kosgei!",
+  ]);
   await client.end();
 
-  expect(res.rows.length).toBeGreaterThan(0);
+  expect(res.rows[0].author).toBe("Japheth Kosgei!");
 });
