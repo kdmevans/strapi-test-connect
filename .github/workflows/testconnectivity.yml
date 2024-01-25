@@ -12,8 +12,8 @@ jobs:
         image: postgres
         env:
           POSTGRES_USER: postgres
-          POSTGRES_PASSWORD: postgres
-          POSTGRES_DB: testdb
+          POSTGRES_PASSWORD: Tiadavino3
+          POSTGRES_DB: mytest2
         ports:
           - 5432:5432
         options: --health-cmd pg_isready --health-interval 45s --health-timeout 25s --health-retries 5
@@ -28,9 +28,9 @@ jobs:
         run: npm install
       - name: Test database connectivity
         env:
-          DB_USER: postgres
-          DB_HOST: postgres
-          DB_NAME: testdb
-          DB_PASSWORD: postgres
-          DB_PORT: 5432
+          DATABASE_USERNAME: ${{ secrets.DATABASE_USERNAME }}
+          DATABASE_HOST: ${{ secrets.DATABASE_HOST }}
+          DATABASE_NAME: ${{ secrets.DATABASE_NAME }}
+          DATABASE_PASSWORD: ${{ secrets.DATABASE_PASSWORD }}
+          DATABASE_PORT: 5432
         run: npm run test
